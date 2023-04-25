@@ -28,7 +28,43 @@ See WRRC diagram below for illustration of the communication between the differe
 04-24-2023 10:00pm CT - Linked about me page.
 
 ## Estimates
-<!-- See below -->
+
+Name of feature: Set-up Repos
+
+Estimate of time needed to complete: 60min
+
+Start time: 4:00pm
+
+Finish time: 5:00pm
+
+Actual time needed to complete: 60min
+
+---
+
+Name of feature: Carousel and link to Server
+
+Estimate of time needed to complete: 60min
+
+Start time: 8:00pm
+
+Finish time: 9:20pm
+
+Actual time needed to complete: 80min
+
+---
+
+Name of feature: About Page
+
+Estimate of time needed to complete: 30min
+
+Start time: 9:30min
+
+Finish time: 10:00min
+
+Actual time needed to complete: 30min
 
 ## Credit and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+
+Aaron Imbrock [gitHub](https://github.com/aaron-imbrock)
+
+Cisco Sanchez [gitHub](https://github.com/c0d3cisco)
