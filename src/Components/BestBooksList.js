@@ -28,7 +28,9 @@ class BestBooksList extends React.Component {
     try {
       const response = await axios.get(apiUrl);
       this.setState({books: response.data});
+      console.log("Request to: ", apiUrl);
     } catch (error) {
+      console.log("Request to: ", apiUrl);
       console.log(error);
     }
   }
