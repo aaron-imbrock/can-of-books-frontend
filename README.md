@@ -77,7 +77,7 @@ Cisco Sanchez [gitHub](https://github.com/c0d3cisco)
 12p-8p
 * What platform will you use to communicate (ie. Slack, phone …)?<br>
 Slack
-* How often will you take breaks?<hr>
+* How often will you take breaks?<br>
 Every hour
 * What is your plan if you start to fall behind?<br>
 Start earlier to get help from TA. Pair programming. Use demo code from class when needed to outline next steps.
