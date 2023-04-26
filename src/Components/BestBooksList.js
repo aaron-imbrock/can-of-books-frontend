@@ -56,12 +56,30 @@ class BestBooksList extends React.Component {
     }
   }
 
+  deleteBook = async (id) => {
+    
+    try {
+      let apiUrl = `${SERVER}/books/${id}`;
+      console.log(apiUrl);
+      const response = await axios.delete(apiUrl);
+      let updatedBooks = this.state.books.filter(book => {
+        return book._id !== id
+      });
+      console.log(updatedBooks);
+      console.dir(`Response.data: ${response.data}`);
+      this.setState({
+        books: updatedBooks,
+      })
+    } catch (error) {
+      console.error("error request to: ", error.message);
+    }
+  } 
   render() {
 
     /* TODO: render all the books in a Carousel */
     let CarouselList = this.state.books.map((book, idx) => {
       return (
-        <BestBooks key={idx} info={book}></BestBooks>
+        <BestBooks onDelete={this.deleteBook} key={idx} info={book}></BestBooks>
       )
     });
 
