@@ -1,11 +1,11 @@
 # Can of Books
 
 **Author**: Aaron Imbrock and Cisco Sanchez
-**Version**: 1.0.0
+**Version**: 1.1.0 (current)
 
 ## Overview
 
-This applications currently enables the user to load a series of book images and titles from a Mongo database.
+This applications enables the user to load a series of book images and titles from a Mongo database. The application allows the user to add books and delete books from the Mongo database.
 
 ## Getting Started
 
@@ -18,7 +18,7 @@ With in the can-of-books-frontend repo in the terminal, run `npm start`. This wi
 ## Architecture
 
 See WRRC diagram below for illustration of the communication between the difference components of the application.
-![WRRC](public/WRRC_CanOfBooks.png)
+![WRRC](public/WRRC2_CanOfBooks.png)
 
 ## Change Log
 
@@ -26,6 +26,8 @@ See WRRC diagram below for illustration of the communication between the differe
 04-24-2023 5:45pm CT - README.md file was initialized.
 04-24-2023 9:30pm CT - Set up connection between front end and back end components of the application. Carousel react element was incorporated.
 04-24-2023 10:00pm CT - Linked about me page.
+04-25-2023 9:00pm CT - Added fully functioning Modal form for adding new books to database.
+04-25-2023 10:00pm CT - Added function to delete individual books from the database.
 
 ## Estimates
 
@@ -57,11 +59,35 @@ Name of feature: About Page
 
 Estimate of time needed to complete: 30min
 
-Start time: 9:30min
+Start time: 9:30pm
 
-Finish time: 10:00min
+Finish time: 10:00pm
 
 Actual time needed to complete: 30min
+
+---
+
+Name of feature: Post New Book Form
+
+Estimate of time needed to complete: 90min
+
+Start time: 7:00pm
+
+Finish time: 9:00pm
+
+Actual time needed to complete: 120min
+
+---
+
+Name of feature: Delete Book
+
+Estimate of time needed to complete: 60min
+
+Start time: 9:00pm
+
+Finish time: 10:00pm
+
+Actual time needed to complete: 60min
 
 ## Credit and Collaborations
 
