@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import { Carousel } from 'react-bootstrap';
+import { Carousel, Button } from 'react-bootstrap';
 import BestBooks from './BestBooks';
+import BookFormModal from './BookFormModal';
 
 const SERVER = process.env.REACT_APP_SERVER;
 
@@ -10,13 +11,26 @@ class BestBooksList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: []
+      books: [],
+      show: false,
     }
   }
 
   /* TODO: Make a GET request to your API to fetch all the books from the database  */
   componentDidMount(){
     this.fetchBooks();
+  }
+
+  closeHandler = () => {
+    this.setState({
+      show: false,
+    })
+  }
+
+  openHandler = () => {
+    this.setState({
+      show: true,
+    }) 
   }
 
   async fetchBooks (id = null){
@@ -28,14 +42,13 @@ class BestBooksList extends React.Component {
     try {
       const response = await axios.get(apiUrl);
       this.setState({books: response.data});
+      console.dir(`Response.data: ${response.data}`);
       console.log("Request to: ", apiUrl);
     } catch (error) {
       console.log("Request to: ", apiUrl);
       console.log(error);
     }
   }
-
-  handle
 
   render() {
 
@@ -49,7 +62,7 @@ class BestBooksList extends React.Component {
     return (
       <>
         <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
-        
+        <Button variant="secondary" onClick={this.openHandler}>Add Book</Button>
         {this.state.books.length > 0 ? (
           <Carousel>
             {CarouselList}
@@ -57,6 +70,7 @@ class BestBooksList extends React.Component {
         ) : (
           <h3>No Books Found :(</h3>
         )}
+        <BookFormModal show={this.state.show} onClose={this.closeHandler} fetchBooks={this.fetchBooks}/>
       </>
     )
   }
