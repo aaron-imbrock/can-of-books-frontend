@@ -23,10 +23,15 @@ See WRRC diagram below for illustration of the communication between the differe
 ## Change Log
 
 04-24-2023 5:30pm CT - Front end repository was initialized.
+
 04-24-2023 5:45pm CT - README.md file was initialized.
+
 04-24-2023 9:30pm CT - Set up connection between front end and back end components of the application. Carousel react element was incorporated.
+
 04-24-2023 10:00pm CT - Linked about me page.
+
 04-25-2023 9:00pm CT - Added fully functioning Modal form for adding new books to database.
+
 04-25-2023 10:00pm CT - Added function to delete individual books from the database.
 
 ## Estimates

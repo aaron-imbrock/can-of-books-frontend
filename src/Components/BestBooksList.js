@@ -70,6 +70,7 @@ class BestBooksList extends React.Component {
       this.setState({
         books: updatedBooks,
       })
+      // this.forceUpdate();
     } catch (error) {
       console.error("error request to: ", error.message);
     }
@@ -77,9 +78,10 @@ class BestBooksList extends React.Component {
   render() {
 
     /* TODO: render all the books in a Carousel */
+    let bookIndexPosition = this.state.books.length - 1;
     let CarouselList = this.state.books.map((book, idx) => {
       return (
-        <BestBooks onDelete={this.deleteBook} key={idx} info={book}></BestBooks>
+        <BestBooks onDelete={this.deleteBook} key={idx} info={book} idx={idx} bookIndexPosition = {bookIndexPosition}></BestBooks>
       )
     });
 

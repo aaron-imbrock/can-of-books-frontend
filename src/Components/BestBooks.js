@@ -3,9 +3,18 @@ import { Carousel, Button } from "react-bootstrap";
 
 
 class Books extends Component {
-
+    
+    deleteHandler = () => {
+        this.props.onDelete(this.props.info._id)
+        console.log(this.props.bookIndexPosition === this.props.idx, this.props.bookIndexPosition , this.props.idx)
+        if(this.props.bookIndexPosition === this.props.idx){ // This will refresh the page if 
+            window.location.reload();
+            // this.forceUpdate();
+        }
+    }
+    
     render() {
-        const { info, ...rest } = this.props;
+        const {info, idx, ...rest } = this.props;
         return (
             <Carousel.Item {...rest}>
                 <img
@@ -18,7 +27,8 @@ class Books extends Component {
                     <p>{info.author}</p>
                     <Button
                     variant="secondary"
-                    onClick={() => this.props.onDelete(info._id)}
+                    id = {idx}
+                    onClick={this.deleteHandler}
                     >
                         Delete
                     </Button>
