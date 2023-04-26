@@ -17,7 +17,7 @@ class BestBooksList extends React.Component {
   }
 
   /* TODO: Make a GET request to your API to fetch all the books from the database  */
-  componentDidMount(){
+  componentDidMount() {
     this.fetchBooks();
   }
 
@@ -30,23 +30,29 @@ class BestBooksList extends React.Component {
   openHandler = () => {
     this.setState({
       show: true,
-    }) 
+    })
   }
 
-  async fetchBooks (id = null){
+  setStateFunc = (obj) => {
+    this.setState({
+      books: [...this.state.books, obj]
+    })
+  }
+
+  async fetchBooks(id = null) {
     let apiUrl = `${SERVER}/books`;
-    
-    if(id){
+
+    if (id) {
       apiUrl += `?id=${id}`;
     }
     try {
       const response = await axios.get(apiUrl);
-      this.setState({books: response.data});
+      this.setState({ books: response.data });
       console.dir(`Response.data: ${response.data}`);
       console.log("Request to: ", apiUrl);
     } catch (error) {
-      console.log("Request to: ", apiUrl);
-      console.log(error);
+      console.log("error Request to: ", apiUrl);
+      console.log("error", error);
     }
   }
 
@@ -70,7 +76,12 @@ class BestBooksList extends React.Component {
         ) : (
           <h3>No Books Found :(</h3>
         )}
-        <BookFormModal show={this.state.show} onClose={this.closeHandler} fetchBooks={this.fetchBooks}/>
+        <BookFormModal
+          show={this.state.show}
+          onClose={this.closeHandler}
+          fetchBooks={this.fetchBooks}
+          setStateFunc={this.setStateFunc}
+        />
       </>
     )
   }
