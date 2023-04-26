@@ -127,8 +127,13 @@ class BestBooksList extends React.Component {
         ) : (
           <h3>No Books Found :(</h3>
         )}
-        <CreateBookFormModal show={this.state.showCreateModal} onClose={this.closeHandler} setStateFunc={this.setStateFunc} />
-        [// TODO: change updateBooks to updateLibrary]
+
+        <CreateBookFormModal 
+        // TODO: change updateBooks to updateLibrary
+        show={this.state.showCreateModal} 
+        onClose={this.closeHandler} 
+        setStateFunc={this.setStateFunc} 
+        />
         <UpdateBookFormModal 
         show={this.state.showUpdateModal} 
         onClose={this.closeHandler} 
