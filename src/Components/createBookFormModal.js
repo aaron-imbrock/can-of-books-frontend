@@ -3,7 +3,7 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Form, Modal } from 'react-bootstrap';
 
-class BookFormModal extends Component {
+class CreateBookFormModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -100,4 +100,4 @@ class BookFormModal extends Component {
     }
 }
 
-export default BookFormModal;
+export default CreateBookFormModal;

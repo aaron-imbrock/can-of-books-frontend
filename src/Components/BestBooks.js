@@ -28,13 +28,13 @@ class Books extends Component {
                     <p>{info.author}</p>
                     <Button
                         variant="secondary"
-                        onClick={() => this.props.onDelete(info._id)}
+                        onClick={() => this.props.deleteBook(info._id)}
                     >
                         Delete
                     </Button>
                     <Button
                         variant="secondary"
-                        onClick={() => this.props.onUpdate(info._id)}
+                        onClick={() => this.props.updateBook(info)}
                     >
                         Update
                     </Button>

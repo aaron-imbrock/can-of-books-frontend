@@ -3,12 +3,11 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Form, Modal } from 'react-bootstrap';
 
-class BookFormUpdateModal extends Component {
+class UpdateBookFormModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
             errorMessage: '',
-
         }
     }
 
@@ -21,21 +20,11 @@ class BookFormUpdateModal extends Component {
             description: event.target.description.value,
             url: event.target.url.value,
             status: event.target.status.checked,
+            _id: this.props.book._id,
+            __v: this.props.book.__v,
         }
-        this.postBook(bookObj);
-    }
-    postBook = async (obj) => {
-        try {
-            let url = `${process.env.REACT_APP_SERVER}/books`;
-            let postBook = await axios.post(url, obj);
-            this.props.setStateFunc(postBook.data);
-            this.props.onClose();
-        } catch (error) {
-            console.error(error);
-            this.setState({
-                errorMessage: error.message,
-            })
-        }
+        console.dir(`UpdateBookObj: ${bookObj}`);
+        this.props.updateBooks(bookObj);
     }
 
     render() {
@@ -56,7 +45,7 @@ class BookFormUpdateModal extends Component {
                             <Form.Label>
                                 Book Title
                             </Form.Label>
-                            <Form.Control type="text" defaultValue={this.props.book.name}/>
+                            <Form.Control type="text" defaultValue={this.props.book.title}/>
                         </Form.Group>
 
                         <Form.Group controlId="author">
@@ -94,4 +83,4 @@ class BookFormUpdateModal extends Component {
     }
 }
 
-export default BookFormUpdateModal;
+export default UpdateBookFormModal;
