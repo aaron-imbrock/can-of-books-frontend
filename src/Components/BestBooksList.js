@@ -2,7 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { Carousel, Button } from 'react-bootstrap';
 import BestBooks from './BestBooks';
-import BookFormModal from './BookFormModal';
+import CreateBookFormModal from './createBookFormModal';
+import UpdateBookFormModal from './updateBookFormModal';
 
 const SERVER = process.env.REACT_APP_SERVER;
 
@@ -12,24 +13,33 @@ class BestBooksList extends React.Component {
     super(props);
     this.state = {
       books: [],
-      show: false,
+      showCreateModal: false,
+      showUpdateModal: false,
+      targetBook: {},
     }
   }
 
-  /* TODO: Make a GET request to your API to fetch all the books from the database  */
   componentDidMount() {
     this.fetchBooks();
   }
 
   closeHandler = () => {
     this.setState({
-      show: false,
+      showCreateModal: false,
+      showUpdateModal: false,
     })
   }
 
-  openHandler = () => {
+  openHandlerCreateModal = () => {
     this.setState({
-      show: true,
+      showCreateModal: true,
+    })
+  }
+
+  getBookAndShowModal = (bookObj) => {
+    this.setState({
+      targetBook: bookObj,
+      showUpdateModal: true,
     })
   }
 
@@ -38,8 +48,8 @@ class BestBooksList extends React.Component {
       books: [...this.state.books, obj]
     })
   }
-
-  async fetchBooks(id = null) {
+// TODO: rename to fetchBooksHandler
+  fetchBooks = async (id = null) => {
     let apiUrl = `${SERVER}/books`;
 
     if (id) {
@@ -56,7 +66,26 @@ class BestBooksList extends React.Component {
     }
   }
 
-  deleteBook = async (id) => {
+  updateBookHandler = async (bookObjToUpdate) => {
+    console.log(`BookobjToUpdate is ${bookObjToUpdate}`);
+    try {
+      let apiUrl = `${SERVER}/books/${bookObjToUpdate._id}`;
+      const response = await axios.put(apiUrl, bookObjToUpdate);
+      let updatedBooks = this.state.books.map((existingBook) => {
+          return existingBook._id === bookObjToUpdate._id 
+          ? response.data
+          : existingBook
+      })
+      this.setState({
+        books: updatedBooks,
+        showUpdateModal: false,
+      })
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+  
+  deleteBookHandler = async (id) => {
     
     try {
       let apiUrl = `${SERVER}/books/${id}`;
@@ -75,18 +104,22 @@ class BestBooksList extends React.Component {
     }
   } 
   render() {
-
     /* TODO: render all the books in a Carousel */
     let CarouselList = this.state.books.map((book, idx) => {
       return (
-        <BestBooks onDelete={this.deleteBook} key={idx} info={book}></BestBooks>
+        <BestBooks 
+        deleteBook={this.deleteBookHandler} 
+        updateBook={this.getBookAndShowModal} 
+        key={idx} info={book} 
+          
+        />
       )
     });
 
     return (
       <>
         <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
-        <Button variant="secondary" onClick={this.openHandler}>Add Book</Button>
+        <Button variant="secondary" onClick={this.openHandlerCreateModal}>Add Book</Button>
         {this.state.books.length > 0 ? (
           <Carousel>
             {CarouselList}
@@ -94,12 +127,14 @@ class BestBooksList extends React.Component {
         ) : (
           <h3>No Books Found :(</h3>
         )}
-        <BookFormModal
-          show={this.state.show}
-          onClose={this.closeHandler}
-          fetchBooks={this.fetchBooks}
-          setStateFunc={this.setStateFunc}
-        />
+        <CreateBookFormModal show={this.state.showCreateModal} onClose={this.closeHandler} setStateFunc={this.setStateFunc} />
+        [// TODO: change updateBooks to updateLibrary]
+        <UpdateBookFormModal 
+        show={this.state.showUpdateModal} 
+        onClose={this.closeHandler} 
+        updateBooks={this.updateBookHandler} 
+        book={this.state.targetBook} 
+        setStateFunc={this.setStateFunc} />
       </>
     )
   }

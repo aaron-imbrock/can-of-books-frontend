@@ -3,12 +3,11 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Form, Modal } from 'react-bootstrap';
 
-class BookFormModal extends Component {
+class UpdateBookFormModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
             errorMessage: '',
-
         }
     }
 
@@ -21,31 +20,15 @@ class BookFormModal extends Component {
             description: event.target.description.value,
             url: event.target.url.value,
             status: event.target.status.checked,
+            _id: this.props.book._id,
+            __v: this.props.book.__v,
         }
-
-        this.postBook(bookObj);
-        // TODO: Rerender data from database callball.
-        // https://github.com/codefellows/seattle-code-301d98/blob/main/class-12/inclass-demo/frontend/src/App.js#L63
-        // this.props.fetchBooks();
-    }
-    postBook = async (obj) => {
-        try {
-            let url = `${process.env.REACT_APP_SERVER}/books`;
-            let postBook = await axios.post(url, obj);
-            this.props.setStateFunc(postBook.data);
-            this.props.onClose();
-        } catch (error) {
-            console.error(error);
-            this.setState({
-                errorMessage: error.message,
-            })
-        }
+        console.dir(`UpdateBookObj: ${bookObj}`);
+        this.props.updateBooks(bookObj);
     }
 
     render() {
         return (
-            // TODO: Add validation styling with form.checkValidity() if statement
-            //       https://react-bootstrap.github.io/forms/validation/
             <Modal
                 {...this.props}
                 show={this.props.show}
@@ -53,7 +36,7 @@ class BookFormModal extends Component {
             >
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        New Book Entry
+                        Update Book Entry
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -62,42 +45,42 @@ class BookFormModal extends Component {
                             <Form.Label>
                                 Book Title
                             </Form.Label>
-                            <Form.Control type="text" placeholder="To Kill a Mockingbird" required />
+                            <Form.Control type="text" defaultValue={this.props.book.title}/>
                         </Form.Group>
 
                         <Form.Group controlId="author">
                             <Form.Label>
                                 Author
                             </Form.Label>
-                            <Form.Control type="text" placeholder="Harper Lee" required />
+                            <Form.Control type="text" defaultValue={this.props.book.author}/>
                         </Form.Group>
 
                         <Form.Group controlId="description">
                             <Form.Label>
                                 Book Description
                             </Form.Label>
-                            <Form.Control type="text" placeholder="Description goes here..." required />
+                            <Form.Control type="text" defaultValue={this.props.book.description}/>
                         </Form.Group>
 
                         <Form.Group controlId="url">
                             <Form.Label>
                                 Book Cover URL
                             </Form.Label>
-                            <Form.Control type="text" placeholder="http://amazon.com" required />
+                            <Form.Control type="text" defaultValue={this.props.book.url}/>
                         </Form.Group>
 
                         <Form.Group controlId="status">
                             <Form.Check type="checkbox" label="Read?" />
                         </Form.Group>
-                        <Button variant='secondary' type='submit'>Submit</Button>
+                        <Button variant='secondary' type='submit'>Update</Button>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <div>{ this.state.errorMessage.length > 0 ? this.state.errorMessage : <br /> }</div>
+                    <div>{this.state.errorMessage.length > 0 ? this.state.errorMessage : <br />}</div>
                 </Modal.Footer>
             </Modal>
         )
     }
 }
 
-export default BookFormModal;
+export default UpdateBookFormModal;
