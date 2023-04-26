@@ -3,6 +3,7 @@ import { Carousel, Button } from "react-bootstrap";
 
 
 class Books extends Component {
+
     render() {
         const { info, ...rest } = this.props;
         return (
@@ -15,7 +16,10 @@ class Books extends Component {
                 <Carousel.Caption>
                     <h3>{info.title}</h3>
                     <p>{info.author}</p>
-                    <Button variant="secondary">
+                    <Button
+                    variant="secondary"
+                    onClick={() => this.props.onDelete(info._id)}
+                    >
                         Delete
                     </Button>
                 </Carousel.Caption>
