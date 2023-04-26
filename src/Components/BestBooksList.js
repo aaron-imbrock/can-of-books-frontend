@@ -107,11 +107,11 @@ class BestBooksList extends React.Component {
     /* TODO: render all the books in a Carousel */
     let CarouselList = this.state.books.map((book, idx) => {
       return (
-        <BestBooks
-        deleteBook={this.deleteBookHandler}
-        updateBook={this.getBookAndShowModal}
-        key={idx}
-        info={book}
+        <BestBooks 
+        deleteBook={this.deleteBookHandler} 
+        updateBook={this.getBookAndShowModal} 
+        key={idx} info={book} 
+          
         />
       )
     });
@@ -127,21 +127,14 @@ class BestBooksList extends React.Component {
         ) : (
           <h3>No Books Found :(</h3>
         )}
-        <CreateBookFormModal
-          show={this.state.showCreateModal}
-          onClose={this.closeHandler}
-          // fetchBooks={this.getBooks}
-          setStateFunc={this.setStateFunc}
-        />
-        <UpdateBookFormModal
-          show={this.state.showUpdateModal}
-          onClose={this.closeHandler}
-          // fetchBooks={this.getBooks}
-          // TODO: change updateBooks to updateLibrary
-          updateBooks={this.updateBookHandler}
-          book={this.state.targetBook}
-          setStateFunc={this.setStateFunc}
-        />
+        <CreateBookFormModal show={this.state.showCreateModal} onClose={this.closeHandler} setStateFunc={this.setStateFunc} />
+        [// TODO: change updateBooks to updateLibrary]
+        <UpdateBookFormModal 
+        show={this.state.showUpdateModal} 
+        onClose={this.closeHandler} 
+        updateBooks={this.updateBookHandler} 
+        book={this.state.targetBook} 
+        setStateFunc={this.setStateFunc} />
       </>
     )
   }

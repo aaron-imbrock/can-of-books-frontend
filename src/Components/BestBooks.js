@@ -15,7 +15,7 @@ class Books extends Component {
         })
     }
     render() {
-        const { info, ...rest } = this.props;
+        const { deleteBook, updateBook, info, ...rest } = this.props;
         return (
             <Carousel.Item {...rest}>
                 <img
@@ -34,7 +34,7 @@ class Books extends Component {
                     </Button>
                     <Button
                         variant="secondary"
-                        onClick={() => this.props.updateBook(info)}
+                        onClick={() => updateBook(info)}
                     >
                         Update
                     </Button>
