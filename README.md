@@ -1,11 +1,12 @@
 # Can of Books
 
 **Author**: Aaron Imbrock and Cisco Sanchez
-**Version**: 1.1.0 (current)
+
+**Version**: 1.2.0 (current)
 
 ## Overview
 
-This applications enables the user to load a series of book images and titles from a Mongo database. The application allows the user to add books and delete books from the Mongo database.
+This applications enables the user to load a series of book images and titles from a Mongo database. The application allows the user to add books and delete books from the Mongo database. The application allows users to update existing books.
 
 ## Getting Started
 
@@ -18,16 +19,17 @@ With in the can-of-books-frontend repo in the terminal, run `npm start`. This wi
 ## Architecture
 
 See WRRC diagram below for illustration of the communication between the difference components of the application.
-![WRRC](public/WRRC2_CanOfBooks.png)
+![WRRC](public/WRRC3_CanOfBooks.png)
 
 ## Change Log
 
-04-24-2023 5:30pm CT - Front end repository was initialized.
-04-24-2023 5:45pm CT - README.md file was initialized.
-04-24-2023 9:30pm CT - Set up connection between front end and back end components of the application. Carousel react element was incorporated.
-04-24-2023 10:00pm CT - Linked about me page.
-04-25-2023 9:00pm CT - Added fully functioning Modal form for adding new books to database.
-04-25-2023 10:00pm CT - Added function to delete individual books from the database.
+04-24-2023 5:30pm CT - Front end repository was initialized.<br>
+04-24-2023 5:45pm CT - README.md file was initialized.<br>
+04-24-2023 9:30pm CT - Set up connection between front end and back end components of the application. Carousel react element was incorporated.<br>
+04-24-2023 10:00pm CT - Linked about me page.<br>
+04-25-2023 9:00pm CT - Added fully functioning Modal form for adding new books to database.<br>
+04-25-2023 10:00pm CT - Added function to delete individual books from the database.<br>
+04-26-2023 5:30PM CT - Functionality to update books stored in DB is implemented.<br>
 
 ## Estimates
 
@@ -88,6 +90,18 @@ Start time: 9:00pm
 Finish time: 10:00pm
 
 Actual time needed to complete: 60min
+
+---
+
+Name of feature: Update Book
+
+Estimate of time needed to complete: 90min
+
+Start time: 3:00pm
+
+Finish time: 5:00pm
+
+Actual time needed to complete: 120min
 
 ## Credit and Collaborations
 
